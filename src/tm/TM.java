@@ -1,14 +1,13 @@
 package tm;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class TM {
 
-    List<State> states = new ArrayList<>();
+    private String configuration;
 
-    public static void main(String[] args) {
-        Configuration configuration = new Configuration();
+    public TM(String configuration) {
+        this.configuration = configuration;
+        System.out.println(configuration);
     }
 
 }
