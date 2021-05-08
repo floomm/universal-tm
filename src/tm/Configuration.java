@@ -6,20 +6,18 @@ import java.util.List;
 import static tm.TapeAlphabet.*;
 import static tm.Direction.*;
 
-public class UTM {
+public class Configuration {
 
     private final List<Transition> transitions = new ArrayList<>();
 
-    public UTM() {
+    public Configuration() {
         setUpMultiplication();
-        List<String> decodedTransitions = decode();
-        for (String transition : decodedTransitions) {
-            System.out.println(transition);
-        }
+        String configuration = configure();
+        System.out.println(configuration);
     }
 
-    private List<String> decode() {
-        List<String> transitionsToDecode = new ArrayList<>();
+    private String configure() {
+        List<String> binaryTransitions = new ArrayList<>();
         String[] transitionParts;
         for (Transition t : transitions) {
             StringBuilder sb = new StringBuilder();
@@ -27,12 +25,20 @@ public class UTM {
             for (int i = 0; i < 5; i++) {
                 int count = Integer.parseInt(transitionParts[i]);
                 sb.append("0".repeat(Math.max(0, count)));
-                sb.append(1);
+                sb.append("1");
             }
-            String decodedFkt = sb.toString();
-            transitionsToDecode.add(decodedFkt.substring(0, decodedFkt.length() - 1));
+            String binaryTransition = sb.toString();
+            binaryTransitions.add(binaryTransition.substring(0, binaryTransition.length() - 1));
         }
-        return transitionsToDecode;
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("1");
+        for (String t : binaryTransitions) {
+            sb.append(t + "11");
+        }
+        sb.append("1" + BLANK);
+
+        return sb.toString();
     }
 
     private void setUpMultiplication() {
