@@ -10,31 +10,46 @@ public class Configurator {
 
     private static final int TRANSITION_LENGTH = 5;
 
-    List<Transition> transitions = new ArrayList<>();
+    private final List<Transition> transitions = new ArrayList<>();
 
-    public String configure() {
-        List<String> binaryTransitions = new ArrayList<>();
-        String[] transitionParts;
+    public List<TapeAlphabet> configure() {
+        List<TapeAlphabet> taBinaryTransitions = new ArrayList<>();
+
         for (Transition t : transitions) {
-            StringBuilder sb = new StringBuilder();
-            transitionParts = t.toString().split(" ");
-            for (int i = 0; i < TRANSITION_LENGTH; i++) {
-                int count = Integer.parseInt(transitionParts[i]);
-                sb.append(ZERO.toString().repeat(Math.max(0, count)));
-                sb.append(ONE);
+            for (int i = 0; i < t.getOldState().getId(); i++) {
+                taBinaryTransitions.add(ZERO);
             }
-            String binaryTransition = sb.toString();
-            binaryTransitions.add(binaryTransition.substring(0, binaryTransition.length() - 1));
+
+            taBinaryTransitions.add(ONE);
+            for (int i = 0; i < t.getSymbolRead().id(); i++) {
+                taBinaryTransitions.add(ZERO);
+            }
+
+            taBinaryTransitions.add(ONE);
+            for (int i = 0; i < t.getNewState().getId(); i++) {
+                taBinaryTransitions.add(ZERO);
+            }
+
+            taBinaryTransitions.add(ONE);
+            for (int i = 0; i < t.getSymbolWrite().id(); i++) {
+                taBinaryTransitions.add(ZERO);
+            }
+
+            taBinaryTransitions.add(ONE);
+            for (int i = 0; i < t.getDirection().id(); i++) {
+                taBinaryTransitions.add(ZERO);
+            }
+
+            taBinaryTransitions.add(ONE);
+            taBinaryTransitions.add(ONE);
         }
 
-        StringBuilder sb = new StringBuilder();
-        sb.append(ONE);
-        for (String t : binaryTransitions) {
-            sb.append(t + ONE + ONE);
-        }
-        sb.append("" + ONE + BLANK);
+        taBinaryTransitions.add(ONE);
+        taBinaryTransitions.add(ONE);
+        taBinaryTransitions.add(ONE);
+        taBinaryTransitions.add(BLANK);
 
-        return sb.toString();
+        return taBinaryTransitions;
     }
 
     public void setUpMultiplication() {

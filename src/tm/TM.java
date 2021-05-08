@@ -1,13 +1,17 @@
 package tm;
 
 
+import java.util.List;
+
 public class TM {
 
-    private String configuration;
+    private Tape tape;
 
-    public TM(String configuration) {
-        this.configuration = configuration;
-        System.out.println(configuration);
+    public TM(List<TapeAlphabet> configuration) {
+        this.tape = new Tape(configuration);
     }
 
+    public Tape getTape() {
+        return tape;
+    }
 }

@@ -2,12 +2,12 @@ package tm;
 
 public class Transition {
 
-    State oldState;
-    TapeAlphabet symbolRead;
+    private State oldState;
+    private TapeAlphabet symbolRead;
 
-    State newState;
-    TapeAlphabet symbolWrite;
-    Direction direction;
+    private State newState;
+    private TapeAlphabet symbolWrite;
+    private Direction direction;
 
     public Transition(int oldStateId, TapeAlphabet symbolRead, int newStateId, TapeAlphabet symbolWrite, Direction direction) {
         this.oldState = new State(oldStateId);
@@ -15,6 +15,26 @@ public class Transition {
         this.newState = new State(newStateId);
         this.symbolWrite = symbolWrite;
         this.direction = direction;
+    }
+
+    public State getOldState() {
+        return oldState;
+    }
+
+    public TapeAlphabet getSymbolRead() {
+        return symbolRead;
+    }
+
+    public State getNewState() {
+        return newState;
+    }
+
+    public TapeAlphabet getSymbolWrite() {
+        return symbolWrite;
+    }
+
+    public Direction getDirection() {
+        return direction;
     }
 
     @Override

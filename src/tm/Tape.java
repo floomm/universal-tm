@@ -7,4 +7,11 @@ public class Tape {
 
     private List<TapeAlphabet> tape = new ArrayList<>();
 
+    public Tape(List<TapeAlphabet> tape) {
+        this.tape = tape;
+    }
+
+    public List<TapeAlphabet> getTape() {
+        return tape;
+    }
 }
