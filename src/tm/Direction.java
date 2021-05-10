@@ -2,19 +2,22 @@ package tm;
 
 public enum Direction {
 
-    LEFT (1, 'L'),
-    RIGHT (2, 'R');
+    LEFT (1, -1),
+    RIGHT (2, 1);
 
-    private int id;
-    private char direction;
+    private final int id;
+    private final int value;
 
-    Direction(int id, char direction) {
+    Direction(int id, int value) {
         this.id = id;
-        this.direction = direction;
+        this.value = value;
     }
 
     public int id() {
         return id;
     }
 
+    public int value() {
+        return value;
+    }
 }

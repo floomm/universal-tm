@@ -1,14 +1,16 @@
 package tm;
 
 
+import java.util.Objects;
+
 public class State {
 
-    private static final int ID_INITIAL_STATE = 1;
-    private static final int ID_ACCEPTING_STATE = 2;
+    public static final int ID_INITIAL_STATE = 1;
+    public static final int ID_ACCEPTING_STATE = 2;
 
-    private int id;
-    private boolean isInitialState;
-    private boolean isAcceptingState;
+    private final int id;
+    private final boolean isInitialState;
+    private final boolean isAcceptingState;
 
     public State(int id) {
         this.id = id;
@@ -18,5 +20,37 @@ public class State {
 
     public int getId() {
         return id;
+    }
+
+    public boolean isInitialState() {
+        return isInitialState;
+    }
+
+    public boolean isAcceptingState() {
+        return isAcceptingState;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        State state = (State) o;
+        return id == state.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Zustand: q" + id);
+        if (isInitialState) sb.append(" (initial state)");
+        if (isAcceptingState) sb.append(" (accepting state)");
+
+        return sb.toString();
     }
 }

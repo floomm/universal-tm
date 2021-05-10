@@ -8,12 +8,16 @@ import static tm.TapeAlphabet.*;
 
 public class Configurator {
 
-    private static final int TRANSITION_LENGTH = 5;
-
+    private final List<State> states = new ArrayList<>();
     private final List<Transition> transitions = new ArrayList<>();
+
+    public List<State> getStates() {
+        return states;
+    }
 
     public List<TapeAlphabet> configure() {
         List<TapeAlphabet> taBinaryTransitions = new ArrayList<>();
+        taBinaryTransitions.add(ONE);
 
         for (Transition t : transitions) {
             for (int i = 0; i < t.getOldState().getId(); i++) {
@@ -52,12 +56,25 @@ public class Configurator {
         return taBinaryTransitions;
     }
 
+    public List<Transition> getTransitionsOfAState(State state) {
+        List<Transition> transitionsOfAState = new ArrayList<>();
+
+        for (Transition transition : transitions) {
+            if (transition.getOldState().equals(state)) transitionsOfAState.add(transition);
+        }
+
+        return transitionsOfAState;
+    }
+
     public void setUpMultiplication() {
+        int numOfStates = 13;
+        createStates(numOfStates);
+
         addTransition(1, BLANK, 1, BLANK, RIGHT);
         addTransition(1, ZERO, 1, ZERO, RIGHT);
         addTransition(1, ONE, 3, ONE, RIGHT);
         addTransition(3, ZERO, 3, ZERO, RIGHT);
-        addTransition(3, BLANK, 4, ONE, LEFT);
+        addTransition(3, ONE, 4, ONE, LEFT);
         addTransition(4, ZERO, 4, ZERO, LEFT);
         addTransition(4, ONE, 5, ONE, RIGHT);
         addTransition(5, X, 5, X, RIGHT);
@@ -85,7 +102,17 @@ public class Configurator {
     }
 
     private void addTransition(int oldStateId, TapeAlphabet symbolRead, int newStateId, TapeAlphabet symbolWrite, Direction dir) {
-        transitions.add(new Transition(oldStateId, symbolRead, newStateId, symbolWrite, dir));
+        State oldState = states.get(oldStateId-1);
+        State newState = states.get(newStateId-1);
+        transitions.add(new Transition(oldState, symbolRead, newState, symbolWrite, dir));
+    }
+
+    private void createStates(int numOfStates) {
+        states.clear();
+
+        for (int i = 1; i <= numOfStates; i++) {
+            states.add(new State(i));
+        }
     }
 
 }

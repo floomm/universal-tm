@@ -1,5 +1,7 @@
 package tm;
 
+import java.util.List;
+
 public class Transition {
 
     private State oldState;
@@ -9,10 +11,10 @@ public class Transition {
     private TapeAlphabet symbolWrite;
     private Direction direction;
 
-    public Transition(int oldStateId, TapeAlphabet symbolRead, int newStateId, TapeAlphabet symbolWrite, Direction direction) {
-        this.oldState = new State(oldStateId);
+    public Transition(State oldState, TapeAlphabet symbolRead, State newState, TapeAlphabet symbolWrite, Direction direction) {
+        this.oldState = oldState;
         this.symbolRead = symbolRead;
-        this.newState = new State(newStateId);
+        this.newState = newState;
         this.symbolWrite = symbolWrite;
         this.direction = direction;
     }
