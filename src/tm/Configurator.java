@@ -101,6 +101,24 @@ public class Configurator {
         addTransition(13, ONE, 5, ONE, RIGHT);
     }
 
+    public void setUpAddition() { // TODO: Fehler bei Eingabe von 0 als erster Summand
+        int numOfStates = 6;
+        createStates(numOfStates);
+
+        addTransition(1, BLANK, 1, BLANK, RIGHT);
+        addTransition(1, ZERO, 3, X, RIGHT);
+        addTransition(1, ONE, 2, BLANK, RIGHT); // to accepting state
+        addTransition(3, ZERO, 3, ZERO, RIGHT);
+        addTransition(3, ONE, 4, ONE, RIGHT);
+        addTransition(4, ZERO, 4, ZERO, RIGHT);
+        addTransition(4, ONE, 5, ZERO, LEFT);
+        addTransition(4, BLANK, 5, ZERO, LEFT);
+        addTransition(5, ZERO, 5, ZERO, LEFT);
+        addTransition(5, ONE, 6, ONE, LEFT);
+        addTransition(6, ZERO, 6, ZERO, LEFT);
+        addTransition(6, X, 1, X, RIGHT);
+    }
+
     private void addTransition(int oldStateId, TapeAlphabet symbolRead, int newStateId, TapeAlphabet symbolWrite, Direction dir) {
         State oldState = states.get(oldStateId-1);
         State newState = states.get(newStateId-1);

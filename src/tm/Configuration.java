@@ -2,7 +2,8 @@ package tm;
 
 public enum Configuration {
 
-    MULTIPLICATION(1, "Multiplikation");
+    MULTIPLICATION(1, "Multiplikation"),
+    ADDITION(2, "Addition");
 
     private final int id;
     private final String name;

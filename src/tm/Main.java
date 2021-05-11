@@ -57,6 +57,10 @@ public class Main {
                 configurator.setUpMultiplication();
                 numbers = multiply();
             }
+            case ADDITION -> {
+                configurator.setUpAddition();
+                numbers = addition();
+            }
             default -> System.err.println("Fehler: Unbekannte Konfiguration");
         }
     }
@@ -74,10 +78,23 @@ public class Main {
         return numbers;
     }
 
+    static int[] addition() {
+        int[] numbers = new int[2];
+
+        System.out.println("----- Addition -----");
+        System.out.print("Erste Zahl: ");
+        numbers[0] = scanner.nextInt();
+        System.out.print("Zweite Zahl: ");
+        numbers[1]= scanner.nextInt();
+        System.out.printf("Es wird kalkuliert: %d + %d%n", numbers[0], numbers[1]);
+
+        return numbers;
+    }
+
     static boolean askForStepMode() {
         boolean stepMode = false;
 
-        System.out.println("Step-Modus (y/n): ");
+        System.out.print("Step-Modus (y/n): ");
         char input = scanner.next().toLowerCase(Locale.ROOT).charAt(0);
 
         if (input == 'y') stepMode = true;
