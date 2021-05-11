@@ -1,15 +1,13 @@
 package tm;
 
-import java.util.List;
-
 public class Transition {
 
-    private State oldState;
-    private TapeAlphabet symbolRead;
+    private final State oldState;
+    private final TapeAlphabet symbolRead;
 
-    private State newState;
-    private TapeAlphabet symbolWrite;
-    private Direction direction;
+    private final State newState;
+    private final TapeAlphabet symbolWrite;
+    private final Direction direction;
 
     public Transition(State oldState, TapeAlphabet symbolRead, State newState, TapeAlphabet symbolWrite, Direction direction) {
         this.oldState = oldState;

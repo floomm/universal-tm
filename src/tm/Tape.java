@@ -5,14 +5,14 @@ import java.util.List;
 
 public class Tape {
 
-    private final List<TapeAlphabet> tape;
+    private final List<TapeAlphabet> tapeList;
 
-    public Tape(List<TapeAlphabet> tape) {
-        this.tape = tape;
+    public Tape(List<TapeAlphabet> tapeList) {
+        this.tapeList = tapeList;
     }
 
-    public List<TapeAlphabet> getTape() {
-        return tape;
+    public List<TapeAlphabet> getTapeList() {
+        return tapeList;
     }
 
     public List<String> getTapeCutout(int head, int cutoutSize) {
@@ -22,10 +22,10 @@ public class Tape {
         for (int i = head-halfSize; i < head+halfSize; i++) {
             try {
                 if (i == head) {
-                    tapeCutout.add("<" + tape.get(i) + ">");
+                    tapeCutout.add("<" + tapeList.get(i) + ">");
                     continue;
                 }
-                tapeCutout.add(tape.get(i).toString());
+                tapeCutout.add(tapeList.get(i).toString());
             } catch (IndexOutOfBoundsException e) {
                 if (i == head) {
                     tapeCutout.add("<" + TapeAlphabet.BLANK + ">");

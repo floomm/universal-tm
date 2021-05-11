@@ -53,12 +53,11 @@ public class Main {
         numbers = new int[2];
 
         switch (configuration) {
-            case MULTIPLICATION:
+            case MULTIPLICATION -> {
                 configurator.setUpMultiplication();
                 numbers = multiply();
-                break;
-            default:
-                System.err.println("Fehler: Unbekannte Konfiguration");
+            }
+            default -> System.err.println("Fehler: Unbekannte Konfiguration");
         }
     }
 
@@ -78,7 +77,7 @@ public class Main {
     static boolean askForStepMode() {
         boolean stepMode = false;
 
-        System.out.printf("Step-Modus (y/n): ");
+        System.out.println("Step-Modus (y/n): ");
         char input = scanner.next().toLowerCase(Locale.ROOT).charAt(0);
 
         if (input == 'y') stepMode = true;

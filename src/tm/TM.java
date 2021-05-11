@@ -9,7 +9,7 @@ public class TM {
     private static final int TAPE_CUTOUT_SIZE = 31;
 
     private final Configurator configurator;
-    private final Tape tape;
+    private final Tape tapeList;
     private State currentState;
     private int head;
     private boolean halted = false;
@@ -19,7 +19,7 @@ public class TM {
 
     public TM(Configurator configurator, boolean stepMode) {
         this.configurator = configurator;
-        this.tape = new Tape(configurator.configure());
+        this.tapeList = new Tape(configurator.configure());
         for (State state : configurator.getStates()) {
             if (state.isInitialState()) {
                 this.currentState = state;
@@ -31,7 +31,7 @@ public class TM {
     }
 
     public List<TapeAlphabet> getTapeList() {
-        return tape.getTape();
+        return tapeList.getTapeList();
     }
 
     public int getResult() {
@@ -94,7 +94,7 @@ public class TM {
     }
 
     /**
-     * Updates the tape following the given transition
+     * Updates the tapeList following the given transition
      * @param transition
      */
     private void updateTape(Transition transition) {
@@ -111,7 +111,7 @@ public class TM {
         System.out.printf("%s%n", currentState);
         System.out.printf("Berechnungs-Nr.: %d%n", stepCounter);
         System.out.printf("Kopfposition: %d%n", head+1);
-        System.out.printf("%s%n", tape.getTapeCutout(head, TAPE_CUTOUT_SIZE));
+        System.out.printf("%s%n", tapeList.getTapeCutout(head, TAPE_CUTOUT_SIZE));
         System.out.println();
 
         if (stepMode) {

@@ -47,7 +47,7 @@ public class State {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("Zustand: q" + id);
+        sb.append("Zustand: q").append(id);
         if (isInitialState) sb.append(" (initial state)");
         if (isAcceptingState) sb.append(" (accepting state)");
 

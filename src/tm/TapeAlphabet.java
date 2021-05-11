@@ -8,8 +8,8 @@ public enum TapeAlphabet {
     X(4, 'X'),
     Y(5, 'Y');
 
-    private int id;
-    private char symbol;
+    private final int id;
+    private final char symbol;
 
     TapeAlphabet(int id, char symbol) {
         this.id = id;
